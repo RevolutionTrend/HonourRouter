@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, InteractionManager, Animated, StyleSheet, Image, Easing } from 'react-native';
+import { View, Dimensions, InteractionManager, Animated, StyleSheet, Easing } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 const iconWidth = 256;
@@ -11,14 +11,28 @@ class SplashScreen extends Component {
         spinValue: new Animated.Value(0)
     }
 
+    animation = Animated.loop(
+        Animated.timing(this.state.spinValue, {
+            toValue: 360,
+            duration: 2000,
+            easing: Easing.linear
+        })
+    )
+
+    timer = null;
+
     componentDidMount() {
-        Animated.loop(
-            Animated.timing(this.state.spinValue, {
-                toValue: 360,
-                duration: 2000,
-                easing: Easing.linear
-            })
-        ).start();
+        const { navigation } = this.props;
+        this.animation.start();
+        this.timer = setTimeout(function () {
+            InteractionManager.runAfterInteractions(() => {
+                navigation.navigate('dashboard');
+            });
+        }, 3000);
+    }
+
+    componentWillUnmount() {
+        this.animation.stop();
     }
 
     render() {
