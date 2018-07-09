@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 
 import PageTop from './pageTop';
+import TabNav from './tabNavigator';
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,6 +11,9 @@ export default class MainPage extends Component {
         return (
             <View style={sheet.main}>
                 <PageTop />
+                <ScrollView style={sheet.content}>
+                    <TabNav />
+                </ScrollView>
             </View>
         );
     }
@@ -24,5 +28,8 @@ const sheet = StyleSheet.create({
         height: height,
         margin: 0,
         padding: 0
+    },
+    content: {
+        flex: 1
     }
 });

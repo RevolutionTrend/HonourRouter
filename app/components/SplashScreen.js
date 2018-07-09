@@ -24,11 +24,12 @@ class SplashScreen extends Component {
     componentDidMount() {
         const { navigation } = this.props;
         this.animation.start();
+        // InteractionManager.runAfterInteractions(() => {
+
         this.timer = setTimeout(function () {
-            InteractionManager.runAfterInteractions(() => {
-                navigation.navigate('dashboard');
-            });
+            navigation.navigate('main');
         }, 3000);
+        // });
     }
 
     componentWillUnmount() {
