@@ -2,11 +2,11 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import SplashScreen from './SplashScreen';
-import MainPage from './main';
+import TabNav from './tabNavigator';
 
 const Stack = createStackNavigator({
     splash: SplashScreen,
-    main: MainPage
+    main: TabNav
 }, {
         initialRouteName: 'splash',
         headerMode: 'none'
