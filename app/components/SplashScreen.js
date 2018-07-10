@@ -28,7 +28,7 @@ class SplashScreen extends Component {
 
         this.timer = setTimeout(function () {
             navigation.navigate('main');
-        }, 3000);
+        }, 1000);
         // });
     }
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 
 import SplashScreen from './SplashScreen';
 import TabNav from './tabNavigator';
 
-const Stack = createStackNavigator({
+const Stack = createSwitchNavigator({
     splash: SplashScreen,
     main: TabNav
 }, {
