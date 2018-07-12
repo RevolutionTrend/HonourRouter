@@ -5,6 +5,7 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 
+let devices = [];
 
 app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -20,40 +21,6 @@ app.use('/', function (req, res, next) {
     next();
 });
 
-let devices = [{
-    deviceName: 'Honour',
-    interfaceType: 'lan',
-    ipAddress: '192.168.1.2',
-    isFamily: 1,
-    macAddress: '00:0a:f7:88:80:b3',
-    picture: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2094939883,1219286755&fm=179&app=42&f=PNG?w=121&h=140',
-    accessTime: (new Date('2018-7-10 15:00:00')).toUTCString()
-}, {
-    deviceName: 'Unknown',
-    interfaceType: '2.4G',
-    ipAddress: '192.168.1.4',
-    isFamily: 1,
-    macAddress: '00:0a:f7:88:80:b5',
-    picture: '',
-    accessTime: (new Date('2018-7-10 14:08:00')).toUTCString()
-}, {
-    deviceName: 'Unknown',
-    interfaceType: '5G',
-    ipAddress: '192.168.1.6',
-    isFamily: 1,
-    macAddress: '00:0a:f7:88:80:b7',
-    picture: '',
-    accessTime: (new Date('2018-7-10 15:10:00')).toUTCString()
-}, {
-    deviceName: 'Unknown',
-    interfaceType: 'lan',
-    ipAddress: '192.168.1.8',
-    isFamily: 1,
-    macAddress: '00:0a:f7:88:80:b9',
-    picture: '',
-    accessTime: (new Date('2018-7-10 13:00:00')).toUTCString()
-}];
-
 app.get('/speed_info', function (req, res) {
     const speed = {
         up: Math.ceil(Math.random() * 512),
@@ -64,7 +31,34 @@ app.get('/speed_info', function (req, res) {
 });
 
 app.get('/device_list', function (req, res) {
-    res.send(devices).end();
+    fs.open('./documents/devices.json', 'r+', function (err, fd) {
+        if (err) {
+            console.log(err);
+            res.send([]).end();
+            return;
+        }
+        let buf = new Buffer.alloc(10240);
+        fs.read(fd, buf, 0, buf.length, 0, function (error, bytes) {
+            if (error) {
+                console.log(error);
+                res.send([]).end();
+                return;
+            }
+            const str = buf.slice(0, bytes).toString();
+            devices = JSON.parse(str);
+            fs.close(fd, function () {
+                console.log('file close success');
+            });
+            res.send(devices).end();
+        });
+    });
+});
+
+app.get('/get_single_device', function (req, res) {
+    const param = req.query;
+    console.log(param);
+    const device = devices.find((e) => e.macAddress === param.macAddress);
+    res.send(device).end();
 });
 
 app.listen('8001', function () {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, Image, Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { navigationOptions } from 'react-navigation';
+
 import { fetchData, setRouteName, getRouteName } from '../../services/utils';
 
 const { width } = Dimensions.get('window');
@@ -18,16 +20,37 @@ const clearTimer = () => {
     }
 }
 
+let pageThis = null;
+
 export default class Devices extends Component {
 
-    state = {
-        up: 0,
-        down: 0,
-        deviceList: []
+    static navigationOptions = {
+        tabBarLabel: '设备',
+        tabBarIcon: <Icon name="devices" size={20} />,
+        tabBarOnPress: ({ navigation, defaultHandler }) => {
+            if (pageThis) {
+                pageThis.initPage();
+            }
+            defaultHandler();
+        }
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            up: 0,
+            down: 0,
+            deviceList: []
+        };
+        pageThis = this;
     }
 
     componentDidMount() {
-        setRouteName('route')
+        this.initPage();
+    }
+
+    initPage = () => {
+        setRouteName('route');
         const that = this;
         clearTimer();
         speedTimer = setInterval(function () {
@@ -63,13 +86,21 @@ export default class Devices extends Component {
         const { deviceName, interfaceType, isFamily, picture, accessTime, macAddress } = item;
         const poster = picture ? <Image style={sheet.itemPicture} source={{ uri: picture }} /> : <Image style={sheet.itemPicture} source={require('../../assets/default.png')} />;
         return (
-            <View key={macAddress} style={sheet.item}>
-                <View style={sheet.itemPictureView}>
-                    {poster}
+            <TouchableOpacity key={macAddress} onPress={() => this.gotoDevicePage(macAddress)}>
+                <View style={sheet.item}>
+                    <View style={sheet.itemPictureView}>
+                        {poster}
+                    </View>
+                    <View style={sheet.itemBody}></View>
                 </View>
-                <View style={sheet.itemBody}></View>
-            </View>
+            </TouchableOpacity>
         )
+    }
+
+    gotoDevicePage = macAddress => {
+        this.props.navigation.navigate('device_manager', {
+            macAddress
+        });
     }
 
     render() {

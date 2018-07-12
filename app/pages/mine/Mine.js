@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { navigationOptions } from 'react-navigation';
+
+import { setRouteName } from '../../services/utils';
 
 export default class Mine extends Component {
 
-    leftPress = () => {
-        console.log('left press');
-    }
-
-    rightPress = () => {
-        console.log('right press');
+    static navigationOptions = {
+        tabBarLabel: '我',
+        tabBarIcon: <Icon name="person-outline" size={20} />,
+        tabBarOnPress: ({ navigation, defaultHandler }) => {
+            setRouteName('mine');
+            defaultHandler();
+        }
     }
 
     render() {

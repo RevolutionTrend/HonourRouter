@@ -86,12 +86,14 @@ const sheet = StyleSheet.create({
         textAlign: 'center'
     },
     content: {
-        flex: 1
+        flex: 1,
+        width: '100%',
+        backgroundColor: '#f0f0f8'
     },
     safeArea: {
         width: '100%',
         height: 'auto',
-        padding: 20,
+        padding: 0,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start'
