@@ -6,15 +6,11 @@ const getUrlAndBody = (method, url, data) => {
         body: ''
     };
     if (data && typeof data === 'object') {
-        if (method.toUpperCase() === 'GET') {
-            let arr = [];
-            for (let key in data) {
-                arr.push(key + '=' + encodeURIComponent(data[key]));
-            }
-            obj.url = obj.url + '?' + arr.join('&');
-        } else {
-            obj.body = JSON.stringify(data);
+        let arr = [];
+        for (let key in data) {
+            arr.push(key + '=' + encodeURIComponent(data[key]));
         }
+        obj.url = obj.url + '?' + arr.join('&');
     }
     return obj;
 }

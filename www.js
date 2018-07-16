@@ -61,6 +61,34 @@ app.get('/get_single_device', function (req, res) {
     res.send(device).end();
 });
 
+app.post('/edit_device', function (req, res) {
+    const param = req.query;
+    console.log(param);
+    let device = devices.find(e => e.macAddress === param.macAddress);
+    if (!device) {
+        res.send({ result: 'failed' }).end();
+        return;
+    }
+    device = Object.assign(device, {
+        deviceName: param.deviceName,
+        isFamily: param.isFamily,
+        isInBlackList: param.isInBlackList,
+        upLimit: param.upLimit,
+        downLimit: param.downLimit,
+        upLimitSpeed: param.upLimitSpeed,
+        downLimitSpeed: param.downLimitSpeed
+    });
+    fs.writeFile('./documents/devices.json', JSON.stringify(devices), function (err, fd) {
+        if (err) {
+            console.log(err);
+            res.send({ result: 'failed' }).end();
+            return;
+        }
+        res.send({ result: 'success' }).end();
+    });
+
+});
+
 app.listen('8001', function () {
     console.log('runing on port 8001.')
 });
