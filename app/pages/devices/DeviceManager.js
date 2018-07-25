@@ -16,8 +16,8 @@ export default class DeviceManager extends Component {
             'picture': '',
             'accessTime': '',
             'isInBlackList': 0,
-            "upLimit": 0,
-            "downLimit": 0,
+            'upLimit': 0,
+            'downLimit': 0,
             'upLimitSpeed': 0,
             'downLimitSpeed': 0
         }
@@ -45,7 +45,7 @@ export default class DeviceManager extends Component {
         fetchData('POST', 'edit_device', this.state.device).then(() => {
             navigation.navigate('main');
         });
-        // this.props.navigation.navigate('main');
+        this.props.navigation.navigate('main');
     }
 
     changeDeviceName = value => {

@@ -71,12 +71,12 @@ app.post('/edit_device', function (req, res) {
     }
     device = Object.assign(device, {
         deviceName: param.deviceName,
-        isFamily: param.isFamily,
-        isInBlackList: param.isInBlackList,
-        upLimit: param.upLimit,
-        downLimit: param.downLimit,
-        upLimitSpeed: param.upLimitSpeed,
-        downLimitSpeed: param.downLimitSpeed
+        isFamily: parseInt(param.isFamily),
+        isInBlackList: parseInt(param.isInBlackList),
+        upLimit: parseInt(param.upLimit),
+        downLimit: parseInt(param.downLimit),
+        upLimitSpeed: parseInt(param.upLimitSpeed),
+        downLimitSpeed: parseInt(param.downLimitSpeed)
     });
     fs.writeFile('./documents/devices.json', JSON.stringify(devices), function (err, fd) {
         if (err) {
@@ -92,3 +92,33 @@ app.post('/edit_device', function (req, res) {
 app.listen('8001', function () {
     console.log('runing on port 8001.')
 });
+
+const convertToString = obj => {
+    switch (typeof obj) {
+        case 'string':
+            return '"' + obj.replace(/(["\\])/g, '\\$1') + '"';
+        case 'array':
+            return '[' + obj.map(convertToString).join(',') + ']';
+        case 'obj':
+            if (obj instanceof Array) {
+                let strArr = [];
+                const len = obj.length;
+                for (let i = 0; i < len; i++) {
+                    strArr.push(convertToString(obj[i]));
+                }
+                return '[' + strArr.join(',') + ']';
+            } else if (null === obj) {
+                return 'null';
+            } else {
+                let str = [];
+                for (let propery in obj) {
+                    str.push(convertToString(propery) + ':' + convertToString(obj[propery]));
+                }
+                return '{' + str.join(',') + '}';
+            }
+        case 'number':
+        case 'boolean':
+        default:
+            return obj;
+    }
+}

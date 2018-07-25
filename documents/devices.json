@@ -1,1 +1,58 @@
-[{"deviceName":"Honour","interfaceType":"lan","ipAddress":"192.168.1.2","isFamily":"1","macAddress":"00:0a:f7:88:80:b3","picture":"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2094939883,1219286755&fm=179&app=42&f=PNG?w=121&h=140","accessTime":"Tue, 12 Jul 2018 07:00:00 GMT","isInBlackList":"0","upLimit":"0","downLimit":"0","upLimitSpeed":"0","downLimitSpeed":"0"},{"deviceName":"Unknown","interfaceType":"2.4G","ipAddress":"192.168.1.4","isFamily":1,"macAddress":"00:0a:f7:88:80:b5","picture":"","accessTime":"Tue, 12 Jul 2018 09:00:00 GMT","isInBlackList":0,"upLimit":0,"downLimit":0,"upLimitSpeed":0,"downLimitSpeed":0},{"deviceName":"Unknown","interfaceType":"5G","ipAddress":"192.168.1.6","isFamily":1,"macAddress":"00:0a:f7:88:80:b7","picture":"","accessTime":"Tue, 12 Jul 2018 10:00:00 GMT","isInBlackList":0,"upLimit":0,"downLimit":0,"upLimitSpeed":0,"downLimitSpeed":0},{"deviceName":"Unknown","interfaceType":"lan","ipAddress":"192.168.1.8","isFamily":1,"macAddress":"00:0a:f7:88:80:b9","picture":"","accessTime":"Tue, 12 Jul 2018 10:58:00 GMT","isInBlackList":0,"upLimit":0,"downLimit":0,"upLimitSpeed":0,"downLimitSpeed":0}]
+[
+    {
+        "deviceName": "Honour",
+        "interfaceType": "lan",
+        "ipAddress": "192.168.1.2",
+        "isFamily": 1,
+        "macAddress": "00:0a:f7:88:80:b3",
+        "picture": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2094939883,1219286755&fm=179&app=42&f=PNG?w=121&h=140",
+        "accessTime": "Tue, 12 Jul 2018 07:00:00 GMT",
+        "isInBlackList": 0,
+        "upLimit": 0,
+        "downLimit": 0,
+        "upLimitSpeed": 0,
+        "downLimitSpeed": 0
+    },
+    {
+        "deviceName": "Xiaomi2",
+        "interfaceType": "2.4G",
+        "ipAddress": "192.168.1.4",
+        "isFamily": 1,
+        "macAddress": "00:0a:f7:88:80:b5",
+        "picture": "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2424829431,3650179751&fm=58&w=121&h=140&img.PNG",
+        "accessTime": "Tue, 12 Jul 2018 09:00:00 GMT",
+        "isInBlackList": 0,
+        "upLimit": 0,
+        "downLimit": 0,
+        "upLimitSpeed": 0,
+        "downLimitSpeed": 0
+    },
+    {
+        "deviceName": "Unknown",
+        "interfaceType": "5G",
+        "ipAddress": "192.168.1.6",
+        "isFamily": 1,
+        "macAddress": "00:0a:f7:88:80:b7",
+        "picture": "",
+        "accessTime": "Tue, 12 Jul 2018 10:00:00 GMT",
+        "isInBlackList": 1,
+        "upLimit": 0,
+        "downLimit": 0,
+        "upLimitSpeed": 0,
+        "downLimitSpeed": 0
+    },
+    {
+        "deviceName": "Unknown",
+        "interfaceType": "lan",
+        "ipAddress": "192.168.1.8",
+        "isFamily": 1,
+        "macAddress": "00:0a:f7:88:80:b9",
+        "picture": "",
+        "accessTime": "Tue, 12 Jul 2018 10:58:00 GMT",
+        "isInBlackList": 0,
+        "upLimit": 0,
+        "downLimit": 0,
+        "upLimitSpeed": 0,
+        "downLimitSpeed": 0
+    }
+]
