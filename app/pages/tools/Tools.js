@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { navigationOptions } from 'react-navigation';
 
 import { setRouteName } from '../../services/utils';
+
+const { width } = Dimensions.get('window');
 
 export default class Tools extends Component {
 
@@ -16,17 +18,28 @@ export default class Tools extends Component {
         }
     }
 
-    leftPress = () => {
-        console.log('left press');
-    }
-
-    rightPress = () => {
-        console.log('right press');
-    }
-
     render() {
         return (
-            <View><Text>This is Tools page.</Text></View>
+            <View style={sheet.container}></View>
         );
     }
 }
+
+const gridWidth = width / 4;
+
+const sheet = StyleSheet.create({
+    container: {
+        width: '100%',
+        height: 'auto',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+    },
+    grid: {
+        width: gridWidth,
+        height: gridWidth,
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    }
+});

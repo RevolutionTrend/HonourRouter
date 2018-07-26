@@ -14,7 +14,7 @@
         "downLimitSpeed": 0
     },
     {
-        "deviceName": "Xiaomi2",
+        "deviceName": "Xiaomi",
         "interfaceType": "2.4G",
         "ipAddress": "192.168.1.4",
         "isFamily": 1,
@@ -22,10 +22,10 @@
         "picture": "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2424829431,3650179751&fm=58&w=121&h=140&img.PNG",
         "accessTime": "Tue, 12 Jul 2018 09:00:00 GMT",
         "isInBlackList": 0,
-        "upLimit": 0,
-        "downLimit": 0,
-        "upLimitSpeed": 0,
-        "downLimitSpeed": 0
+        "upLimit": 1,
+        "downLimit": 1,
+        "upLimitSpeed": 512,
+        "downLimitSpeed": 2048
     },
     {
         "deviceName": "Unknown",
